@@ -10,17 +10,6 @@ namespace ExercisesFunctions
     {
         static void Main(string[] args)
         {
-            //###
-            //#X#
-            //###
-            //var point = new points(playerPos.x-1,playerPos.y-1);
-            //for (int row = point.x; row < point.x+2; row++)
-            //{
-            //    for (int col = point.y; col < point.y+2; col++)
-            //    {
-            //
-            //    }
-            //}
             //Exercise1
             //F1. test
             //F2. den integer man skriver som argument multiplicerat med sig självt
@@ -35,7 +24,7 @@ namespace ExercisesFunctions
             //4: 22
             //5: 6.5
 
-            Console.WriteLine(ReverseStringRecursive("Hej"));
+            Console.WriteLine(GetInterest(100,(decimal)1.10,3));
             Console.ReadKey(true);
         }
 
@@ -255,7 +244,17 @@ namespace ExercisesFunctions
             return filteredValues;
         }
 
-        private static ()
+        private static decimal GetInterest(decimal balance, decimal rate, int years)
+        {
+            if (years == 1)
+            {
+                return balance * rate;
+            }
+
+            return GetInterest(balance * rate, rate, years - 1);
+        }
+
+        
     }
 
     
