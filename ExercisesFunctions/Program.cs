@@ -210,24 +210,24 @@ namespace ExercisesFunctions
 
             return ReverseStringRecursive(inputString.Substring(1)) + inputString[0];
         }
-
+        //19a
         static void AssignRandom(double inputValue)
         {
             new Random().Next(0, 1);
         }
-
+        //19b
         static double MakePositive(double inputValue)
         {
             return Math.Abs(inputValue);
         }
-
+        //20
         static Array CopyArray(Array array)
         {
             Array returnArray = null;
             Array.Copy(array, returnArray, array.Length);
             return returnArray;
         }
-
+        //21
         private static int[] FilterLessThan(int[] values, int inputValue)
         {
             int size = 0;
@@ -243,7 +243,7 @@ namespace ExercisesFunctions
             }
             return filteredValues;
         }
-
+        //21.5
         private static decimal GetInterest(decimal balance, decimal rate, int years)
         {
             if (years == 1)
@@ -253,8 +253,102 @@ namespace ExercisesFunctions
 
             return GetInterest(balance * rate, rate, years - 1);
         }
+        //22
+        private static void BubbleSort(int[] toSort)
+        {
+            int current = 0;
 
+            for (int write = 0; write < toSort.Length; write++)
+            {
+                for (int sort = 0; sort < toSort.Length - 1; sort++)
+                {
+                    if (toSort[sort] > toSort[sort + 1])
+                    {
+                        current = toSort[sort + 1];
+                        toSort[sort + 1] = toSort[sort];
+                        toSort[sort] = current;
+                    }
+                }
+            }
+        }
         
+        //23?? 
+        private static int[] Merge(int[] first, int[] second)
+        {
+            int[] merged = new int [first.Length];
+            for (int i = 0, j = 0; i < first.Length; i++, j++)
+            {
+                if (i < j)
+                {
+                    merged[i] = i;
+                    continue;
+                }
+                merged[i] = j;
+            }
+            return merged;
+        }
+
+        //24
+        public static void MergeSortRecursive(ref int[] data, int left, int right)
+        {
+            if (left < right)
+            {
+                int m = left + (right - left) / 2;
+
+                MergeSortRecursive(ref data, left, m);
+                MergeSortRecursive(ref data, m + 1, right);
+                DoMerge(ref data, left, m, right);
+            }
+        }
+
+        private static void DoMerge(ref int[] data, int left, int mid, int right)
+        {
+            int i, j, k; 
+            int n1 = mid - left + 1;
+            int n2 = right - mid;
+            int[] L = new int[n1];
+            int[] R = new int[n2];
+
+            for (i = 0; i < n1; i++)
+                L[i] = data[left + i];
+
+            for (j = 0; j < n2; j++)
+                R[j] = data[mid + 1 + j];
+
+            i = 0;
+            j = 0;
+            k = left;
+
+            while (i < n1 && j < n2)
+            {
+                if (L[i] <= R[j])
+                {
+                    data[k] = L[i];
+                    i++;
+                }
+                else
+                {
+                    data[k] = R[j];
+                    j++;
+                }
+
+                k++;
+            }
+
+            while (i < n1)
+            {
+                data[k] = L[i];
+                i++;
+                k++;
+            }
+
+            while (j < n2)
+            {
+                data[k] = R[j];
+                j++;
+                k++;
+            }
+        }
     }
 
     
